@@ -114,6 +114,10 @@ function changeInfo(direction) {
   let currentInfoEl = cardInfosContainerEl.querySelector(".current--info");
   let previousInfoEl = cardInfosContainerEl.querySelector(".previous--info");
   let nextInfoEl = cardInfosContainerEl.querySelector(".next--info");
+  let lastPreviousInfoEl = cardInfosContainerEl.querySelector(
+    ".last--previous--info"
+  );
+  let lastNextInfoEl = cardInfosContainerEl.querySelector(".last--next--info");
 
   gsap
     .timeline()
@@ -161,15 +165,21 @@ function changeInfo(direction) {
     currentInfoEl.classList.remove("current--info");
     previousInfoEl.classList.remove("previous--info");
     nextInfoEl.classList.remove("next--info");
+    lastPreviousInfoEl.classList.remove("last--previous--info");
+    lastNextInfoEl.classList.remove("last--next--info");
 
     if (direction === "right") {
       currentInfoEl.classList.add("previous--info");
+      previousInfoEl.classList.add("last--previous--info");
       nextInfoEl.classList.add("current--info");
-      previousInfoEl.classList.add("next--info");
+      lastNextInfoEl.classList.add("next--info");
+      lastPreviousInfoEl.classList.add("last--next--info");
     } else if (direction === "left") {
       currentInfoEl.classList.add("next--info");
-      nextInfoEl.classList.add("previous--info");
       previousInfoEl.classList.add("current--info");
+      nextInfoEl.classList.add("last--next--info");
+      lastNextInfoEl.classList.add("last--previous--info");
+      lastPreviousInfoEl.classList.add("previous--info");
     }
   }
 }
